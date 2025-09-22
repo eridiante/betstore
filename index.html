@@ -811,6 +811,699 @@
             color: var(--text-tertiary);
         }
 
+        /* What is APIgrator Info Section */
+        .what-apigrator {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apigrator-info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .apigrator-info-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="light"] .apigrator-info-content {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Text Content */
+        .apigrator-info-text {
+            order: 1;
+        }
+
+        .info-title {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .title-underline {
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
+            border-radius: 2px;
+            margin-top: 1rem;
+        }
+
+        .info-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        /* 3D Modular Blocks Visualization */
+        .apigrator-info-visual {
+            order: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .modular-blocks {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(-20deg) rotateY(25deg);
+            animation: rotateBlocks 20s linear infinite;
+        }
+
+        @keyframes rotateBlocks {
+            0% { transform: perspective(1000px) rotateX(-20deg) rotateY(25deg); }
+            100% { transform: perspective(1000px) rotateX(-20deg) rotateY(385deg); }
+        }
+
+        .blocks-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .block {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            transform-style: preserve-3d;
+            animation: floatBlock 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBlock {
+            0%, 100% { transform: translateZ(0px); }
+            50% { transform: translateZ(20px); }
+        }
+
+        /* Individual Block Positioning and Colors */
+        .block-1 {
+            top: 0;
+            left: 0;
+            --block-color: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            animation-delay: 0s;
+        }
+
+        .block-2 {
+            top: 0;
+            left: 90px;
+            --block-color: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            animation-delay: 0.2s;
+        }
+
+        .block-3 {
+            top: 0;
+            left: 180px;
+            --block-color: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
+            animation-delay: 0.4s;
+        }
+
+        .block-4 {
+            top: 90px;
+            left: 0;
+            --block-color: linear-gradient(135deg, #fed7aa 0%, #fb923c 100%);
+            animation-delay: 0.6s;
+        }
+
+        .block-5 {
+            top: 90px;
+            left: 90px;
+            --block-color: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            animation-delay: 0.8s;
+        }
+
+        .block-6 {
+            top: 90px;
+            left: 180px;
+            --block-color: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            animation-delay: 1s;
+        }
+
+        .block-7 {
+            top: 180px;
+            left: 0;
+            --block-color: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            animation-delay: 1.2s;
+        }
+
+        .block-8 {
+            top: 180px;
+            left: 90px;
+            --block-color: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            animation-delay: 1.4s;
+        }
+
+        .block-9 {
+            top: 180px;
+            left: 180px;
+            --block-color: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+            animation-delay: 1.6s;
+        }
+
+        /* Block Faces */
+        .block::before,
+        .block::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .block::before {
+            background: var(--block-color);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            transform: translateZ(40px);
+        }
+
+        .block::after {
+            background: var(--block-color);
+            filter: brightness(0.8);
+            transform: rotateY(90deg) translateZ(40px);
+        }
+
+        /* Additional block sides */
+        .block {
+            background: var(--block-color);
+            filter: brightness(0.6);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Stats Grid */
+        .apigrator-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        [data-theme="light"] .stat-item:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .apigrator-info-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 2rem;
+            }
+
+            .apigrator-info-visual {
+                order: 1;
+                margin-bottom: 2rem;
+            }
+
+            .apigrator-info-text {
+                order: 2;
+            }
+
+            .modular-blocks {
+                width: 280px;
+                height: 280px;
+            }
+
+            .block {
+                width: 60px;
+                height: 60px;
+            }
+
+            .block-1, .block-4, .block-7 { left: 0; }
+            .block-2, .block-5, .block-8 { left: 70px; }
+            .block-3, .block-6, .block-9 { left: 140px; }
+            
+            .block-1, .block-2, .block-3 { top: 0; }
+            .block-4, .block-5, .block-6 { top: 70px; }
+            .block-7, .block-8, .block-9 { top: 140px; }
+
+            .apigrator-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .apigrator-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .info-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            .modular-blocks,
+            .block {
+                animation: none !important;
+            }
+        }
+
+        /* APIgrator Integration Section */
+        .apigrator-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 50%, #dbeafe 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        [data-theme="dark"] .apigrator-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .apigrator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .apigrator-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .apigrator-title span {
+            position: relative;
+            display: inline-block;
+        }
+
+        .apigrator-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ef4444 0%, #f97316 100%);
+            border-radius: 2px;
+        }
+
+        .apigrator-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .apigrator-form {
+            max-width: 500px;
+        }
+
+        .form-label {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        .integration-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .form-submit {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+        }
+
+        .form-disclaimer {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+        }
+
+        .form-disclaimer a {
+            color: var(--primary);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .form-disclaimer a:hover {
+            color: var(--secondary);
+        }
+
+        /* 3D Visual Section */
+        .apigrator-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            perspective: 1000px;
+        }
+
+        .visual-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            transform-style: preserve-3d;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Glass Platform */
+        .glass-platform {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%) rotateX(70deg) rotateZ(-45deg);
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.2) 0%, 
+                rgba(147, 51, 234, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .glass-platform {
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.3) 0%, 
+                rgba(147, 51, 234, 0.3) 100%);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .platform-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            border-radius: 20px;
+            opacity: 0.5;
+        }
+
+        /* 3D Cube */
+        .cube-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            transform-style: preserve-3d;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 15s linear infinite;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+        }
+
+        .cube-front { transform: rotateY(0deg) translateZ(75px); }
+        .cube-back { transform: rotateY(180deg) translateZ(75px); }
+        .cube-right { transform: rotateY(90deg) translateZ(75px); }
+        .cube-left { transform: rotateY(-90deg) translateZ(75px); }
+        .cube-top { transform: rotateX(90deg) translateZ(75px); }
+        .cube-bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+        .cube-logo {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sphere */
+        .sphere {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            box-shadow: 
+                0 10px 30px rgba(245, 158, 11, 0.4),
+                inset -5px -5px 10px rgba(0, 0, 0, 0.2);
+            animation: floatSphere 3s ease-in-out infinite;
+        }
+
+        @keyframes floatSphere {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .float-element {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatElement 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .element-1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .element-2 {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .element-3 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .element-4 {
+            bottom: 30%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatElement {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translate(20px, -20px) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-10px, 10px) rotate(180deg);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate(15px, -15px) rotate(270deg);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .apigrator-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .apigrator-visual {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .visual-container {
+                max-width: 300px;
+                height: 300px;
+            }
+
+            .glass-platform {
+                width: 250px;
+                height: 250px;
+            }
+
+            .cube-face {
+                width: 100px;
+                height: 100px;
+            }
+
+            .cube-front { transform: rotateY(0deg) translateZ(50px); }
+            .cube-back { transform: rotateY(180deg) translateZ(50px); }
+            .cube-right { transform: rotateY(90deg) translateZ(50px); }
+            .cube-left { transform: rotateY(-90deg) translateZ(50px); }
+            .cube-top { transform: rotateX(90deg) translateZ(50px); }
+            .cube-bottom { transform: rotateX(-90deg) translateZ(50px); }
+        }
+
+        @media (max-width: 640px) {
+            .integration-form {
+                flex-direction: column;
+            }
+
+            .form-input {
+                min-width: 100%;
+            }
+
+            .form-submit {
+                width: 100%;
+            }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            .visual-container,
+            .cube,
+            .sphere,
+            .float-element {
+                animation: none !important;
+            }
+        }
+
         /* Products Showcase Section (SoftSwiss Style) */
         .products-showcase {
             padding: 5rem 2rem;
@@ -1258,6 +1951,73 @@
         </div>
     </nav>
 
+    <!-- APIgrator Integration Section -->
+    <section class="apigrator-section" id="apigrator">
+        <div class="apigrator-container">
+            <div class="apigrator-content">
+                <h2 class="apigrator-title scroll-reveal">
+                    APIgrator онлайн казино<br>
+                    <span>игровая интеграция</span>
+                </h2>
+                <p class="apigrator-description scroll-reveal">
+                    Обогатите вашу казино платформу более чем 30 000 сертифицированными играми от 
+                    180+ лицензированных разработчиков с APIgrator — нашим единым решением для 
+                    быстрой интеграции игрового софта.
+                </p>
+                
+                <div class="apigrator-form scroll-reveal">
+                    <p class="form-label">Заполните форму, чтобы связаться с нами и расширить ваше игровое предложение.</p>
+                    <form class="integration-form" id="apigratorForm">
+                        <input 
+                            type="email" 
+                            placeholder="Ваш Email" 
+                            class="form-input" 
+                            required
+                            aria-label="Email адрес"
+                        >
+                        <button type="submit" class="form-submit">
+                            Бесплатная консультация
+                        </button>
+                    </form>
+                    <p class="form-disclaimer">
+                        Нажимая кнопку, вы соглашаетесь с нашими 
+                        <a href="#terms">Условиями использования</a> и 
+                        <a href="#privacy">Политикой конфиденциальности</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="apigrator-visual scroll-reveal">
+                <div class="visual-container">
+                    <div class="glass-platform">
+                        <div class="platform-grid"></div>
+                    </div>
+                    <div class="cube-container">
+                        <div class="cube">
+                            <div class="cube-face cube-front">
+                                <span class="cube-logo">API</span>
+                            </div>
+                            <div class="cube-face cube-back">
+                                <span class="cube-logo">grator</span>
+                            </div>
+                            <div class="cube-face cube-right"></div>
+                            <div class="cube-face cube-left"></div>
+                            <div class="cube-face cube-top"></div>
+                            <div class="cube-face cube-bottom"></div>
+                        </div>
+                        <div class="sphere"></div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="float-element element-1">🎰</div>
+                        <div class="float-element element-2">🎲</div>
+                        <div class="float-element element-3">♠️</div>
+                        <div class="float-element element-4">♦️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
@@ -1559,6 +2319,62 @@
                             </svg>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is APIgrator Section -->
+    <section class="what-apigrator" id="what-apigrator">
+        <div class="apigrator-info-container">
+            <div class="apigrator-info-content">
+                <div class="apigrator-info-visual scroll-reveal">
+                    <div class="modular-blocks">
+                        <div class="blocks-container">
+                            <div class="block block-1"></div>
+                            <div class="block block-2"></div>
+                            <div class="block block-3"></div>
+                            <div class="block block-4"></div>
+                            <div class="block block-5"></div>
+                            <div class="block block-6"></div>
+                            <div class="block block-7"></div>
+                            <div class="block block-8"></div>
+                            <div class="block block-9"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="apigrator-info-text scroll-reveal">
+                    <h2 class="info-title">
+                        What is APIgrator?
+                        <span class="title-underline"></span>
+                    </h2>
+                    <p class="info-description">
+                        APIgrator is the ultimate solution for online casino content, offering 
+                        a huge collection of games from the industry's leading game 
+                        developers, available for swift and seamless integration in just one 
+                        session. Save time, cut costs, and skip the administrative burden of 
+                        negotiating and signing separate contracts with multiple vendors.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="apigrator-stats scroll-reveal">
+                <div class="stat-item">
+                    <div class="stat-value">30 000+</div>
+                    <div class="stat-description">online casino games</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">180+</div>
+                    <div class="stat-description">top game providers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1</div>
+                    <div class="stat-description">integration session</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-description">technical support</div>
                 </div>
             </div>
         </div>
@@ -2016,6 +2832,127 @@
         showcaseTiles.forEach(tile => {
             tile.addEventListener('mouseleave', () => {
                 tile.style.transform = '';
+            });
+        });
+        // APIgrator Form Handling
+        const apigratorForm = document.getElementById('apigratorForm');
+        if (apigratorForm) {
+            apigratorForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = apigratorForm.querySelector('input[type="email"]');
+                const submitButton = apigratorForm.querySelector('.form-submit');
+                
+                if (emailInput.value) {
+                    // Animate button
+                    submitButton.innerHTML = 'Отправка...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        submitButton.innerHTML = '✓ Отправлено!';
+                        submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                        emailInput.value = '';
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitButton.innerHTML = 'Бесплатная консультация';
+                            submitButton.style.background = '';
+                            submitButton.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                }
+            });
+        }
+
+        // 3D Cube Mouse Interaction
+        const visualContainer = document.querySelector('.visual-container');
+        if (visualContainer) {
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                const rect = visualContainer.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                mouseX = (e.clientX - centerX) / (rect.width / 2);
+                mouseY = (e.clientY - centerY) / (rect.height / 2);
+            });
+
+            function animate3D() {
+                targetX += (mouseX - targetX) * 0.1;
+                targetY += (mouseY - targetY) * 0.1;
+                
+                const cube = document.querySelector('.cube');
+                if (cube) {
+                    cube.style.transform = `rotateX(${-20 + targetY * 10}deg) rotateY(${targetX * 30}deg)`;
+                }
+                
+                requestAnimationFrame(animate3D);
+            }
+            
+            animate3D();
+        }
+
+        // 3D Modular Blocks Interaction
+        const modularBlocks = document.querySelector('.modular-blocks');
+        if (modularBlocks) {
+            let isHovered = false;
+            
+            modularBlocks.addEventListener('mouseenter', () => {
+                isHovered = true;
+                modularBlocks.style.animationPlayState = 'paused';
+            });
+            
+            modularBlocks.addEventListener('mouseleave', () => {
+                isHovered = false;
+                modularBlocks.style.animationPlayState = 'running';
+            });
+            
+            modularBlocks.addEventListener('mousemove', (e) => {
+                if (!isHovered) return;
+                
+                const rect = modularBlocks.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                
+                const rotateX = -20 + y * 20;
+                const rotateY = 25 + x * 30;
+                
+                modularBlocks.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        }
+        
+        // Animate blocks on scroll
+        const blocks = document.querySelectorAll('.block');
+        const blocksObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        blocks.forEach(block => {
+            block.style.opacity = '0';
+            block.style.transform = 'translateY(20px)';
+            block.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            blocksObserver.observe(block);
+        });
+
+        // Parallax for floating elements
+        document.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const floatElements = document.querySelectorAll('.float-element');
+            
+            floatElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
             });
         });
     </script>
