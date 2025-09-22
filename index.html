@@ -13,28 +13,107 @@
         }
 
         :root {
+            /* Dark theme (default) */
             --primary: #6C63FF;
             --secondary: #FF6B6B;
             --accent: #4ECDC4;
             --dark: #1A1A2E;
             --darker: #0F0F1E;
             --light: #F5F5F5;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-tertiary: rgba(255, 255, 255, 0.6);
+            --bg-primary: #0F0F1E;
+            --bg-secondary: #1A1A2E;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --border-color: rgba(255, 255, 255, 0.1);
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #0F0F1E 100%);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --nav-bg: rgba(26, 26, 46, 0.95);
+        }
+
+        [data-theme="light"] {
+            /* Light theme */
+            --primary: #1e40af;
+            --secondary: #f97316;
+            --accent: #06b6d4;
+            --dark: #ffffff;
+            --darker: #f9fafb;
+            --light: #1f2937;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-tertiary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f3f4f6;
+            --border-color: #e5e7eb;
+            --gradient: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            --gradient-gold: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            --gradient-dark: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--darker);
-            color: white;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            opacity: 0.8;
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle-slider::before {
+            content: "🌙";
+            font-size: 14px;
+        }
+
+        [data-theme="light"] .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
+        [data-theme="light"] .theme-toggle-slider::before {
+            content: "☀️";
         }
 
         /* Navigation */
@@ -43,17 +122,17 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(26, 26, 46, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav.scrolled {
             padding: 0.5rem 0;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--shadow-lg);
         }
 
         .nav-container {
@@ -87,7 +166,7 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-primary);
             text-decoration: none;
             position: relative;
             transition: all 0.3s ease;
@@ -101,7 +180,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--secondary);
             transform: translateX(-50%);
             transition: width 0.3s ease;
         }
@@ -111,7 +190,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--secondary);
             transform: translateY(-2px);
         }
 
@@ -131,10 +210,20 @@
             animation: pulse 2s infinite;
         }
 
+        [data-theme="light"] .cta-button {
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+        }
+
         @keyframes pulse {
             0% { box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3); }
             50% { box-shadow: 0 4px 30px rgba(108, 99, 255, 0.5); }
             100% { box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3); }
+        }
+
+        [data-theme="light"] @keyframes pulse {
+            0% { box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3); }
+            50% { box-shadow: 0 4px 30px rgba(30, 64, 175, 0.5); }
+            100% { box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3); }
         }
 
         .cta-button:hover {
@@ -154,7 +243,7 @@
         .mobile-menu-btn span {
             width: 30px;
             height: 3px;
-            background: white;
+            background: var(--text-primary);
             transition: all 0.3s ease;
             border-radius: 2px;
         }
@@ -168,6 +257,7 @@
             position: relative;
             padding: 120px 2rem 2rem;
             overflow: hidden;
+            background: var(--bg-primary);
         }
 
         .hero-bg {
@@ -181,6 +271,13 @@
                 radial-gradient(circle at 80% 50%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 50% 100%, rgba(78, 205, 196, 0.2) 0%, transparent 50%);
             animation: morphing 20s ease-in-out infinite;
+        }
+
+        [data-theme="light"] .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(30, 64, 175, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
         }
 
         @keyframes morphing {
@@ -201,6 +298,10 @@
             position: absolute;
             opacity: 0.1;
             animation: float 20s infinite ease-in-out;
+        }
+
+        [data-theme="light"] .shape {
+            opacity: 0.05;
         }
 
         .shape:nth-child(1) {
@@ -251,7 +352,7 @@
         .hero h1 {
             font-size: clamp(2rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, #667eea 50%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 50%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 1s ease-out;
@@ -271,7 +372,7 @@
 
         .hero-subtitle {
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.2s both;
         }
@@ -298,17 +399,21 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 30px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
+        [data-theme="light"] .feature-badge {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
         .feature-badge:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-card-hover);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .feature-icon {
@@ -322,10 +427,11 @@
         .section {
             padding: 5rem 2rem;
             position: relative;
+            background: var(--bg-primary);
         }
 
         .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-secondary);
         }
 
         .container {
@@ -345,7 +451,7 @@
         .section-subtitle {
             text-align: center;
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
@@ -361,14 +467,18 @@
         }
 
         .product-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 2rem;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+        }
+
+        [data-theme="light"] .product-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .product-card::before {
@@ -389,8 +499,8 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(108, 99, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
         }
 
         .product-icon {
@@ -408,11 +518,11 @@
         .product-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: white;
+            color: var(--text-primary);
         }
 
         .product-description {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
@@ -426,7 +536,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
         }
 
         .product-features li::before {
@@ -450,14 +560,18 @@
         .stat-card {
             text-align: center;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-card);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
+        [data-theme="light"] .stat-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
         .stat-card:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--bg-card-hover);
             transform: scale(1.05);
         }
 
@@ -472,7 +586,7 @@
 
         .stat-label {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
         }
 
         /* Image placeholders */
@@ -487,6 +601,10 @@
             position: relative;
             overflow: hidden;
             margin: 2rem 0;
+        }
+
+        [data-theme="light"] .image-placeholder {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
         }
 
         .image-placeholder::before {
@@ -513,7 +631,7 @@
         .placeholder-icon {
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -523,7 +641,7 @@
         .placeholder-icon svg {
             width: 40px;
             height: 40px;
-            stroke: rgba(255, 255, 255, 0.5);
+            stroke: var(--text-tertiary);
             stroke-width: 2;
             fill: none;
         }
@@ -537,24 +655,28 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 2rem;
             position: relative;
             transition: all 0.3s ease;
         }
 
+        [data-theme="light"] .testimonial-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
         .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--bg-card-hover);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .testimonial-quote {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
             font-style: italic;
         }
@@ -578,12 +700,12 @@
 
         .author-name {
             font-weight: bold;
-            color: white;
+            color: var(--text-primary);
             margin-bottom: 0.25rem;
         }
 
         .author-title {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-tertiary);
             font-size: 0.9rem;
         }
 
@@ -596,16 +718,20 @@
         }
 
         .contact-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
         }
 
+        [data-theme="light"] .contact-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
         .contact-card:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--bg-card-hover);
             transform: translateY(-5px);
         }
 
@@ -620,11 +746,11 @@
         .contact-title {
             font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: white;
+            color: var(--text-primary);
         }
 
         .contact-info {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
@@ -640,9 +766,9 @@
 
         /* Footer */
         footer {
-            background: var(--darker);
+            background: var(--bg-secondary);
             padding: 3rem 2rem 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-color);
             margin-top: 5rem;
         }
 
@@ -657,7 +783,7 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: white;
+            color: var(--text-primary);
         }
 
         .footer-links {
@@ -669,7 +795,7 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-tertiary);
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -681,8 +807,8 @@
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
         }
 
         /* Responsive */
@@ -693,10 +819,11 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--dark);
+                background: var(--bg-secondary);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1rem;
+                border-top: 1px solid var(--border-color);
             }
 
             .nav-links.active {
@@ -724,7 +851,7 @@
         .loader {
             width: 50px;
             height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--border-color);
             border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -759,6 +886,11 @@
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#testimonials">Отзывы</a></li>
                 <li><a href="#contact">Контакты</a></li>
+                <li>
+                    <div class="theme-toggle" id="themeToggle">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
+                </li>
                 <li><a href="#demo" class="cta-button">Получить демо</a></li>
             </ul>
             <div class="mobile-menu-btn" id="mobileMenuBtn">
@@ -783,7 +915,7 @@
             
             <div class="hero-cta scroll-reveal">
                 <a href="#demo" class="cta-button">🚀 Получить демо за 24 часа</a>
-                <a href="#products" class="cta-button" style="background: transparent; border: 2px solid white;">Узнать больше</a>
+                <a href="#products" class="cta-button" style="background: transparent; border: 2px solid currentColor;">Узнать больше</a>
             </div>
 
             <div class="hero-features scroll-reveal">
@@ -815,7 +947,6 @@
                     </svg>
                 </div>
             </div>
-            <!-- PROMPT: Create a futuristic dashboard interface showing online casino admin panel with live statistics, player data, game management, colorful charts and graphs, dark theme with purple and blue accents, modern UI design -->
         </div>
     </section>
 
@@ -862,7 +993,6 @@
                         <li>Адаптивный дизайн</li>
                         <li>Турниры и джекпоты</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -870,7 +1000,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Modern online casino interface with slot games grid, live dealer section, colorful game thumbnails, jackpot counter, dark elegant design with gold accents -->
                 </div>
 
                 <div class="product-card scroll-reveal">
@@ -882,7 +1011,6 @@
                         <li>Управление рисками</li>
                         <li>Маржа от 3%</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -890,7 +1018,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Sports betting platform interface showing live football matches, odds display, bet slip, live scores, statistics panels, modern dark theme with green accents -->
                 </div>
 
                 <div class="product-card scroll-reveal">
@@ -902,7 +1029,6 @@
                         <li>Мгновенные выплаты</li>
                         <li>Комиссия от 1.8%</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -910,7 +1036,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Payment gateway interface showing multiple payment methods, credit cards, cryptocurrency logos, transaction flow diagram, modern fintech design -->
                 </div>
 
                 <div class="product-card scroll-reveal">
@@ -922,7 +1047,6 @@
                         <li>Мгновенные транзакции</li>
                         <li>NFT награды</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -930,7 +1054,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Cryptocurrency casino interface with Bitcoin and Ethereum symbols, blockchain elements, dark futuristic design with neon accents, provably fair badge -->
                 </div>
 
                 <div class="product-card scroll-reveal">
@@ -942,7 +1065,6 @@
                         <li>Push-уведомления</li>
                         <li>Mini Apps</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -950,7 +1072,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Telegram bot casino interface on mobile phone, chat-based gaming, slot machine in messenger, blue and white Telegram theme -->
                 </div>
 
                 <div class="product-card scroll-reveal">
@@ -962,7 +1083,6 @@
                         <li>VIP программа</li>
                         <li>Gamification</li>
                     </ul>
-                    <!-- Product Image Placeholder -->
                     <div class="image-placeholder" style="height: 200px; margin-top: 1rem;">
                         <div class="placeholder-icon">
                             <svg viewBox="0 0 24 24">
@@ -970,7 +1090,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- PROMPT: Bonus system dashboard showing loyalty levels, rewards, gift boxes, progress bars, achievement badges, colorful celebratory design -->
                 </div>
             </div>
         </div>
@@ -1017,7 +1136,6 @@
                 </div>
             </div>
 
-            <!-- Solutions Comparison Image -->
             <div class="image-placeholder" style="height: 400px; margin-top: 3rem;">
                 <div class="placeholder-icon">
                     <svg viewBox="0 0 24 24">
@@ -1027,7 +1145,6 @@
                     </svg>
                 </div>
             </div>
-            <!-- PROMPT: Comparison table/infographic showing different iGaming solutions packages, pricing tiers, features checkmarks, modern business presentation style -->
         </div>
     </section>
 
@@ -1057,7 +1174,6 @@
                 </div>
             </div>
 
-            <!-- Company Timeline Image -->
             <div class="image-placeholder" style="height: 300px; margin-top: 3rem;">
                 <div class="placeholder-icon">
                     <svg viewBox="0 0 24 24">
@@ -1068,7 +1184,6 @@
                     </svg>
                 </div>
             </div>
-            <!-- PROMPT: Company timeline infographic showing growth from 2012 to 2024, milestones, achievements, modern corporate design with gradient colors -->
         </div>
     </section>
 
@@ -1140,7 +1255,6 @@
                 </div>
             </div>
 
-            <!-- Success Chart Image -->
             <div class="image-placeholder" style="height: 400px; margin-top: 3rem;">
                 <div class="placeholder-icon">
                     <svg viewBox="0 0 24 24">
@@ -1149,7 +1263,6 @@
                     </svg>
                 </div>
             </div>
-            <!-- PROMPT: Business growth chart showing revenue increase over time, bar graphs comparing market average vs Betstore clients performance, professional analytics dashboard -->
         </div>
     </section>
 
@@ -1189,7 +1302,6 @@
                 </div>
             </div>
 
-            <!-- Contact Form or Map Placeholder -->
             <div class="image-placeholder" style="height: 400px; margin-top: 3rem;">
                 <div class="placeholder-icon">
                     <svg viewBox="0 0 24 24">
@@ -1198,7 +1310,6 @@
                     </svg>
                 </div>
             </div>
-            <!-- PROMPT: World map showing office locations with pins, modern minimalist style, dark background with glowing connection lines between offices -->
         </div>
     </section>
 
@@ -1260,6 +1371,22 @@
     </footer>
 
     <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
