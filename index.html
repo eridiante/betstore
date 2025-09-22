@@ -811,6 +811,363 @@
             color: var(--text-tertiary);
         }
 
+        /* Products Showcase Section (SoftSwiss Style) */
+        .products-showcase {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .showcase-intro h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .showcase-intro p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 45ch;
+        }
+
+        .showcase-range {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-tertiary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Tiles Grid */
+        .showcase-tiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        /* Base Tile Styles */
+        .showcase-tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            min-height: 280px;
+        }
+
+        .showcase-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .showcase-tile:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tile Variants */
+        .tile-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+        }
+
+        .tile-primary .tile-title,
+        .tile-primary .tile-features {
+            color: white;
+        }
+
+        .tile-primary .feature-dot {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .tile-dark {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+        }
+
+        [data-theme="light"] .tile-dark {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .tile-gradient {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .tile-gradient .tile-title,
+        .tile-gradient .tile-features {
+            color: white;
+        }
+
+        .tile-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
+            color: white;
+        }
+
+        .tile-accent .tile-title,
+        .tile-accent .tile-features {
+            color: white;
+        }
+
+        /* Tile Header */
+        .tile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 1.5rem 1rem;
+        }
+
+        .tile-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .tile-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .tile-primary .tile-arrow,
+        .tile-dark .tile-arrow {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tile-arrow svg {
+            width: 20px;
+            height: 20px;
+            color: currentColor;
+        }
+
+        .showcase-tile:hover .tile-arrow {
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Tile Features List */
+        .tile-features {
+            padding: 0 1.5rem 1.5rem;
+            list-style: none;
+        }
+
+        .tile-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .feature-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Tile Content (for Sportsbook) */
+        .tile-content {
+            padding: 0 1.5rem 1.5rem;
+            position: relative;
+        }
+
+        .tile-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tile-expand {
+            position: absolute;
+            bottom: 1rem;
+            left: 1.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tile-expand svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        .tile-expand:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Tile Preview Area */
+        .tile-preview {
+            position: relative;
+            margin: 0 1.5rem 1.5rem;
+            height: 120px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-theme="light"] .tile-preview {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .preview-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-icon {
+            width: 80px;
+            height: 80px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        [data-theme="light"] .tile-primary .preview-icon {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="light"] .tile-dark .preview-icon {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Hand Pointer (appears on hover) */
+        .preview-pointer {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tile-primary .preview-pointer {
+            background: white;
+            border-color: transparent;
+        }
+
+        .preview-pointer svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .tile-primary .preview-pointer svg {
+            color: #f97316;
+        }
+
+        .showcase-tile:hover .preview-pointer {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Animation for hover state */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .showcase-tile:hover .preview-icon {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .showcase-tiles {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-tile {
+                min-height: 240px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .showcase-intro h2 {
+                font-size: 2rem;
+            }
+
+            .tile-title {
+                font-size: 1.5rem;
+            }
+
+            .tile-preview {
+                height: 100px;
+            }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            .showcase-tile,
+            .preview-pointer,
+            .tile-arrow,
+            .tile-expand {
+                transition: none !important;
+            }
+            
+            .preview-icon {
+                animation: none !important;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -872,152 +1229,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* === Products Showcase (SoftSwiss-like) === */
-        .products-showcase {
-          padding: 5rem 2rem;
-          background: var(--bg-primary);
-        }
-        .products-showcase .wrap {
-          max-width: 1200px; margin: 0 auto;
-          display: grid; grid-template-columns: 1.15fr 1.15fr; gap: 2rem;
-        }
-        .products-showcase .intro h2 {
-          font-size: clamp(2.2rem, 6vw, 4.2rem);
-          font-weight: 800; letter-spacing: -0.02em;
-          line-height: 1.05;
-        }
-        .products-showcase .intro p {
-          margin-top: 1.25rem; color: var(--text-secondary); max-width: 52ch;
-        }
-        .products-showcase .range {
-          margin-top: 1.5rem; color: var(--text-tertiary); font-weight: 600;
-        }
-        
-        /* tiles grid (right side) */
-        .ps-tiles {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
-        }
-        @media (min-width: 980px) {
-          .ps-tiles {
-            grid-template-columns: 1fr;
-          }
-        }
-        
-        /* shared tile */
-        .ps-tile {
-          position: relative;
-          overflow: hidden;
-          border-radius: 18px;
-          border: 1px solid var(--border-color);
-          background: var(--bg-card);
-          transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
-          box-shadow: none;
-        }
-        .ps-tile:hover {
-          transform: translateY(-6px);
-          box-shadow: var(--shadow-lg);
-          border-color: var(--primary);
-        }
-        
-        /* primary (yellow) like “Game Aggregator” */
-        .ps-tile.primary {
-          background: linear-gradient(180deg, rgba(255,189,46,.95) 0%, rgba(255,189,46,.9) 35%, var(--bg-card) 36%);
-          /* лёгкий edge как в карточке */
-        }
-        
-        /* dark tile like “Sportsbook” */
-        .ps-tile.dark {
-          background: radial-gradient(1200px 400px at 70% 120%, rgba(0,0,0,.35), transparent),
-                      var(--bg-card);
-        }
-        
-        /* tile header */
-        .ps-head {
-          display: flex; align-items: center; justify-content: space-between;
-          padding: 1.25rem 1.25rem 0.75rem 1.25rem;
-        }
-        .ps-title {
-          font-size: clamp(1.5rem, 2.2vw, 2.2rem); font-weight: 800;
-        }
-        
-        /* arrow button (top-right) */
-        .ps-arrow {
-          --size: 42px;
-          width: var(--size); height: var(--size);
-          border-radius: 11px;
-          border: 1px solid var(--border-color);
-          background: var(--bg-primary);
-          display: grid; place-items: center;
-          transition: transform .2s ease, background .2s ease, border-color .2s ease;
-          cursor: pointer;
-        }
-        .ps-arrow svg { width: 20px; height: 20px; }
-        .ps-tile:hover .ps-arrow {
-          background: var(--primary);
-          border-color: transparent;
-          transform: translateY(-2px);
-        }
-        
-        /* bullet list */
-        .ps-list {
-          padding: 0 1.25rem 1.25rem 1.25rem;
-          list-style: none; color: var(--text-secondary);
-        }
-        .ps-list li {
-          display: flex; align-items: center; gap: .5rem;
-          padding: .35rem 0;
-        }
-        .ps-dot {
-          width: 20px; height: 20px; border-radius: 50%;
-          background: var(--accent); flex: 0 0 20px;
-        }
-        
-        /* image/preview area (right side of tile) */
-        .ps-art {
-          position: relative;
-          margin: 0 1.25rem 1.25rem 1.25rem;
-          height: 160px;
-          border-radius: 14px;
-          background: linear-gradient(135deg, rgba(255,255,255,.12), transparent);
-          overflow: hidden;
-        }
-        [data-theme="light"] .ps-art {
-          background: linear-gradient(135deg, rgba(0,0,0,.06), transparent);
-        }
-        
-        /* “hand-pointer” helper appears on hover */
-        .ps-pointer {
-          position: absolute; bottom: 16px; left: 16px;
-          width: 56px; height: 56px; display: grid; place-items: center;
-          border-radius: 14px;
-          background: var(--bg-primary);
-          border: 1px solid var(--border-color);
-          opacity: 0; transform: translateY(6px) scale(.98);
-          transition: opacity .25s ease, transform .25s ease;
-        }
-        .ps-tile:hover .ps-pointer {
-          opacity: 1; transform: translateY(0) scale(1);
-        }
-        
-        /* tiny bounce on the pointer icon */
-        @keyframes ps-bounce { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
-        .ps-pointer svg { animation: ps-bounce 1.8s ease-in-out infinite; }
-        
-        /* mobile */
-        @media (max-width: 980px) {
-          .products-showcase .wrap { grid-template-columns: 1fr; }
-          .ps-art { height: 140px; }
-        }
-        
-        /* reduce motion */
-        @media (prefers-reduced-motion: reduce) {
-          .ps-tile, .ps-pointer, .ps-arrow { transition: none !important; }
-          .ps-pointer svg { animation: none !important; }
-        }
-
     </style>
 </head>
 <body>
@@ -1096,69 +1307,6 @@
         </div>
     </section>
 
-    <section class="products-showcase" id="products-showcase">
-      <div class="wrap">
-        <!-- левая колонка — заголовок/описание -->
-        <div class="intro">
-          <h2>iGaming<br>Products</h2>
-          <p>Мы разрабатываем инновационные iGaming-решения для онлайн-казино, беттинга и лото. 
-             Модули поставляются как отдельно, так и внутри единой платформы.</p>
-          <p class="range">1 – 6</p>
-        </div>
-    
-        <!-- правая колонка — карточки -->
-        <div class="ps-tiles">
-          <!-- Game Aggregator (primary) -->
-          <article class="ps-tile primary" tabindex="0">
-            <div class="ps-head">
-              <div class="ps-title">Game Aggregator</div>
-              <button class="ps-arrow" aria-label="Подробнее о Game Aggregator">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M8 5l8 7-8 7"/>
-                </svg>
-              </button>
-            </div>
-    
-            <ul class="ps-list">
-              <li><span class="ps-dot"></span> RNG и live-игры</li>
-              <li><span class="ps-dot"></span> Единая API-интеграция</li>
-              <li><span class="ps-dot"></span> Клиентский бэк-офис</li>
-              <li><span class="ps-dot"></span> Тысячи слотов</li>
-            </ul>
-    
-            <div class="ps-art">
-              <!-- тут можно вставить img или canvas; сейчас — заглушка -->
-              <div class="ps-pointer" aria-hidden="true" title="Наведи курсор">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M7 12l3 3 7-7"/>
-                  <path d="M9 21l-3-9 9 3 3 6z"/>
-                </svg>
-              </div>
-            </div>
-          </article>
-    
-          <!-- Sportsbook (dark) -->
-          <article class="ps-tile dark" tabindex="0">
-            <div class="ps-head">
-              <div class="ps-title">Sportsbook</div>
-              <button class="ps-arrow" aria-label="Подробнее о Sportsbook">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M8 5l8 7-8 7"/>
-                </svg>
-              </button>
-            </div>
-            <div class="ps-body">
-              <p style="padding: 0 1.25rem 0 1.25rem; color: var(--text-secondary);">
-                Высоконагруженная платформа ставок с наследованием фич платформы: стабильность, 
-                расширенное управление игроком и гибкая сегментация.
-              </p>
-            </div>
-            <div class="ps-art"></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- Stats Section -->
     <section class="section">
         <div class="container">
@@ -1182,6 +1330,118 @@
                     <div class="stat-number">24/7</div>
                     <div class="stat-label">Техподдержка</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase Section (SoftSwiss Style) -->
+    <section class="products-showcase" id="products-showcase">
+        <div class="showcase-container">
+            <div class="showcase-intro scroll-reveal">
+                <h2>iGaming<br>Products</h2>
+                <p>Мы разрабатываем инновационные iGaming-решения для онлайн-казино, беттинга и лото. 
+                   Модули поставляются как отдельно, так и внутри единой платформы.</p>
+                <p class="showcase-range">1 – 6</p>
+            </div>
+            
+            <div class="showcase-tiles">
+                <!-- Game Aggregator Card -->
+                <article class="showcase-tile tile-primary scroll-reveal" tabindex="0">
+                    <div class="tile-header">
+                        <h3 class="tile-title">Game Aggregator</h3>
+                        <button class="tile-arrow" aria-label="Подробнее о Game Aggregator">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 12h10m0 0l-4-4m4 4l-4 4"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <ul class="tile-features">
+                        <li><span class="feature-dot"></span>RNG и live-игры</li>
+                        <li><span class="feature-dot"></span>Единая API-интеграция</li>
+                        <li><span class="feature-dot"></span>Клиентский бэк-офис</li>
+                        <li><span class="feature-dot"></span>Тысячи слотов</li>
+                    </ul>
+                    <div class="tile-preview">
+                        <div class="preview-image">
+                            <svg class="preview-icon" viewBox="0 0 100 100" fill="none">
+                                <rect x="20" y="30" width="60" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="35" cy="50" r="8" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="65" cy="50" r="8" stroke="currentColor" stroke-width="2"/>
+                                <path d="M15 25h70M20 75h60" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="preview-pointer">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.5 12.5l-1.5 6 6-1.5-1.5-1.5 4-4-3-3-4 4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sportsbook Card -->
+                <article class="showcase-tile tile-dark scroll-reveal" tabindex="0">
+                    <div class="tile-header">
+                        <h3 class="tile-title">Sportsbook</h3>
+                        <button class="tile-arrow" aria-label="Подробнее о Sportsbook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 12h10m0 0l-4-4m4 4l-4 4"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="tile-content">
+                        <p>Высоконагруженная платформа ставок с наследованием фич платформы: стабильность, 
+                           расширенное управление игроком и гибкая сегментация.</p>
+                        <button class="tile-expand">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v8m-4-4h8"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="tile-preview">
+                        <div class="preview-image">
+                            <svg class="preview-icon" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="2"/>
+                                <path d="M50 25v25l18 18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M30 20l40 60M70 20l-40 60" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Additional Product Cards -->
+                <article class="showcase-tile tile-gradient scroll-reveal" tabindex="0">
+                    <div class="tile-header">
+                        <h3 class="tile-title">Casino Platform</h3>
+                        <button class="tile-arrow" aria-label="Подробнее о Casino Platform">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 12h10m0 0l-4-4m4 4l-4 4"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <ul class="tile-features">
+                        <li><span class="feature-dot"></span>5000+ игр</li>
+                        <li><span class="feature-dot"></span>200+ провайдеров</li>
+                        <li><span class="feature-dot"></span>Live казино</li>
+                    </ul>
+                </article>
+
+                <article class="showcase-tile tile-accent scroll-reveal" tabindex="0">
+                    <div class="tile-header">
+                        <h3 class="tile-title">Affilika</h3>
+                        <button class="tile-arrow" aria-label="Подробнее об Affilika">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 12h10m0 0l-4-4m4 4l-4 4"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <ul class="tile-features">
+                        <li><span class="feature-dot"></span>Партнерская программа</li>
+                        <li><span class="feature-dot"></span>Автоматизация выплат</li>
+                        <li><span class="feature-dot"></span>Детальная аналитика</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </section>
@@ -1693,18 +1953,70 @@
             numberObserver.observe(grid);
         });
 
-        /* лёгкий фокус-контур по Tab для плиток */
-        document.querySelectorAll('.ps-tile').forEach(t => {
-          t.addEventListener('focus', () => t.style.boxShadow = getComputedStyle(document.documentElement)
-            .getPropertyValue('--shadow-lg'));
-          t.addEventListener('blur', () => t.style.boxShadow = '');
-        });
+        // Products Showcase Interactions
+        const showcaseTiles = document.querySelectorAll('.showcase-tile');
         
-        /* Клик по “стрелке” ведёт на якорь/страницу — поменяй href при необходимости */
-        document.querySelectorAll('.ps-tile .ps-arrow').forEach((btn, i) => {
-          btn.addEventListener('click', () => {
-            // пример: window.location.href = '/products/game-aggregator';
-          });
+        showcaseTiles.forEach(tile => {
+            // Add keyboard navigation support
+            tile.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const arrow = tile.querySelector('.tile-arrow');
+                    if (arrow) arrow.click();
+                }
+            });
+            
+            // Arrow button click handler
+            const arrowBtn = tile.querySelector('.tile-arrow');
+            if (arrowBtn) {
+                arrowBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Here you can add navigation logic
+                    console.log('Navigate to:', tile.querySelector('.tile-title').textContent);
+                });
+            }
+            
+            // Expand button click handler
+            const expandBtn = tile.querySelector('.tile-expand');
+            if (expandBtn) {
+                expandBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    tile.classList.toggle('expanded');
+                    // Add expand logic here
+                });
+            }
+            
+            // Tile click handler
+            tile.addEventListener('click', () => {
+                // Add tile click logic here
+                const arrow = tile.querySelector('.tile-arrow');
+                if (arrow) arrow.click();
+            });
+        });
+
+        // Add parallax effect to showcase tiles on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const tiles = document.querySelectorAll('.showcase-tile');
+            tiles.forEach(tile => {
+                const rect = tile.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const xRotation = (y / rect.height) * 10;
+                const yRotation = (x / rect.width) * -10;
+                
+                if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                    e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                    tile.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-8px)`;
+                }
+            });
+        });
+
+        // Reset transform on mouse leave
+        showcaseTiles.forEach(tile => {
+            tile.addEventListener('mouseleave', () => {
+                tile.style.transform = '';
+            });
         });
     </script>
 </body>
