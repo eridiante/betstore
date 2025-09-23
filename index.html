@@ -158,80 +158,340 @@
             50% { filter: brightness(1.2); }
         }
 
-        .nav-links {
+        /* Desktop Menu */
+        .nav-menu {
             display: flex;
-            gap: 2rem;
             list-style: none;
+            gap: 1rem;
             align-items: center;
+            margin: 0;
         }
 
-        .nav-links a {
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--text-primary);
             text-decoration: none;
-            position: relative;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
 
-        .nav-links a::after {
-            content: '';
+        .nav-link:hover {
+            color: var(--primary);
+            background: var(--bg-card);
+        }
+
+        .dropdown-icon {
+            width: 12px;
+            height: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item.has-dropdown:hover .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Mega Dropdown */
+        .mega-dropdown {
             position: absolute;
-            bottom: 0;
+            top: calc(100% + 1rem);
             left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
             transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 80%;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        .cta-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
             transition: all 0.3s ease;
+            min-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Enhanced dark theme dropdown readability */
+        [data-theme="dark"] .mega-dropdown {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .mega-dropdown {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item.has-dropdown:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-container {
+            padding: 1.5rem;
+        }
+
+        .dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .dropdown-grid.columns-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .dropdown-grid.columns-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
             text-decoration: none;
-            display: inline-block;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            position: relative;
+            background: transparent;
+        }
+
+        [data-theme="dark"] .dropdown-item {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg-primary);
+            transform: translateX(5px);
+        }
+
+        [data-theme="dark"] .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .dropdown-item.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        [data-theme="dark"] .dropdown-item.featured {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .dropdown-item.featured:hover {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+        }
+
+        [data-theme="dark"] .dropdown-item.featured:hover {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+        }
+
+        .dropdown-item.featured-card {
+            grid-column: span 2;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            min-height: 120px;
+        }
+
+        [data-theme="dark"] .dropdown-item.featured-card {
+            background: rgba(15, 15, 30, 0.8);
+        }
+
+        .item-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            border-radius: 10px;
+        }
+
+        [data-theme="dark"] .item-icon {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .item-content h4 {
+            font-size: 1rem;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
-            animation: pulse 2s infinite;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
         }
 
-        [data-theme="light"] .cta-button {
-            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+        .item-content p {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin: 0;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3); }
-            50% { box-shadow: 0 4px 30px rgba(108, 99, 255, 0.5); }
-            100% { box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3); }
+        .item-arrow {
+            width: 16px;
+            height: 16px;
+            margin-left: auto;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.2s ease;
         }
 
-        [data-theme="light"] @keyframes pulse {
-            0% { box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3); }
-            50% { box-shadow: 0 4px 30px rgba(30, 64, 175, 0.5); }
-            100% { box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3); }
+        .dropdown-item:hover .item-arrow {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 30px rgba(108, 99, 255, 0.5);
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        /* Mobile menu button */
+        .featured-image {
+            width: 100px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border-radius: 10px;
+            margin-right: 1rem;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .lang-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lang-button:hover {
+            background: var(--bg-card);
+            border-color: var(--primary);
+        }
+
+        .lang-flag {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .lang-code {
+            font-weight: 600;
+        }
+
+        .lang-arrow {
+            width: 10px;
+            height: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .language-selector.active .lang-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            max-height: 300px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Enhanced dark theme language dropdown */
+        [data-theme="dark"] .lang-dropdown {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .lang-dropdown {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-selector.active .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-option:hover {
+            background: var(--bg-primary);
+        }
+
+        [data-theme="dark"] .lang-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .lang-option.active {
+            color: var(--primary);
+            background: var(--bg-primary);
+        }
+
+        [data-theme="dark"] .lang-option.active {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .lang-option .lang-flag {
+            font-size: 1.2rem;
+        }
+
+        /* Nav Actions */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -246,6 +506,210 @@
             background: var(--text-primary);
             transition: all 0.3s ease;
             border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-content {
+            padding: 1rem;
+        }
+
+        .mobile-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary);
+            background: var(--bg-card);
+        }
+
+        .submenu-toggle {
+            font-size: 1.5rem;
+            color: var(--text-tertiary);
+            transition: transform 0.3s ease;
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+        }
+
+        .mobile-nav-item.submenu-open .submenu-toggle {
+            transform: rotate(45deg);
+        }
+
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .mobile-nav-item.submenu-open .mobile-submenu {
+            max-height: 500px;
+        }
+
+        .mobile-submenu li {
+            list-style: none;
+        }
+
+        .mobile-submenu a {
+            display: block;
+            padding: 1rem 1rem 1rem 2rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-submenu a:hover {
+            color: var(--primary);
+            background: var(--bg-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            opacity: 0.8;
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle-slider::before {
+            content: "🌙";
+            font-size: 14px;
+        }
+
+        [data-theme="light"] .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
+        [data-theme="light"] .theme-toggle-slider::before {
+            content: "☀️";
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        [data-theme="light"] .cta-button {
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(108, 99, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
         }
 
         /* Hero Section */
@@ -2627,24 +3091,343 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">BETSTORE</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#products">Продукты</a></li>
-                <li><a href="#solutions">Решения</a></li>
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#testimonials">Отзывы</a></li>
-                <li><a href="#contact">Контакты</a></li>
-                <li>
-                    <div class="theme-toggle" id="themeToggle">
-                        <div class="theme-toggle-slider"></div>
+            
+            <!-- Desktop Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <!-- Products Dropdown -->
+                <li class="nav-item has-dropdown">
+                    <a href="#products" class="nav-link">
+                        Products
+                        <svg class="dropdown-icon" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid">
+                                <a href="#game-aggregator" class="dropdown-item featured">
+                                    <div class="item-icon">🎮</div>
+                                    <div class="item-content">
+                                        <h4>Game Aggregator</h4>
+                                        <p>API for all casino game content needs</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                                <a href="#affilka" class="dropdown-item">
+                                    <div class="item-icon">📊</div>
+                                    <div class="item-content">
+                                        <h4>Affilka</h4>
+                                        <p>iGaming affiliate management platform</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                                <a href="#jackpot" class="dropdown-item">
+                                    <div class="item-icon">💰</div>
+                                    <div class="item-content">
+                                        <h4>Jackpot Aggregator</h4>
+                                        <p>Enhance player retention and engagement</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                                <a href="#sportsbook" class="dropdown-item">
+                                    <div class="item-icon">⚽</div>
+                                    <div class="item-content">
+                                        <h4>Sportsbook Platform</h4>
+                                        <p>Web-based sports betting software</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                                <a href="#casino-platform" class="dropdown-item">
+                                    <div class="item-icon">🎰</div>
+                                    <div class="item-content">
+                                        <h4>Casino Platform</h4>
+                                        <p>Robust online casino software and modules</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                                <a href="#managed-services" class="dropdown-item">
+                                    <div class="item-icon">🛠️</div>
+                                    <div class="item-content">
+                                        <h4>Managed Services</h4>
+                                        <p>Critical support services 24/7</p>
+                                    </div>
+                                    <svg class="item-arrow" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </li>
-                <li><a href="#demo" class="cta-button">Получить демо</a></li>
+                
+                <!-- Partners Dropdown -->
+                <li class="nav-item has-dropdown">
+                    <a href="#partners" class="nav-link">
+                        Partners
+                        <svg class="dropdown-icon" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid columns-3">
+                                <a href="#game-providers" class="dropdown-item">
+                                    <div class="item-icon">🎯</div>
+                                    <div class="item-content">
+                                        <h4>Game Providers</h4>
+                                        <p>Online casino games developers</p>
+                                    </div>
+                                </a>
+                                <a href="#business-partners" class="dropdown-item">
+                                    <div class="item-icon">🤝</div>
+                                    <div class="item-content">
+                                        <h4>Business Partners</h4>
+                                        <p>BETSTORE clients hall of fame</p>
+                                    </div>
+                                </a>
+                                <a href="#payment-providers" class="dropdown-item">
+                                    <div class="item-icon">💳</div>
+                                    <div class="item-content">
+                                        <h4>Payment Providers</h4>
+                                        <p>Integrated payment systems</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <!-- Company Dropdown -->
+                <li class="nav-item has-dropdown">
+                    <a href="#company" class="nav-link">
+                        Company
+                        <svg class="dropdown-icon" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid columns-2">
+                                <a href="#about" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>About Us</h4>
+                                        <p>Get to know our history and mission</p>
+                                    </div>
+                                </a>
+                                <a href="#tech-stack" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>Technology Stack</h4>
+                                        <p>Discover our technology and software</p>
+                                    </div>
+                                </a>
+                                <a href="#careers" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>Careers</h4>
+                                        <p>Join the Team!</p>
+                                    </div>
+                                </a>
+                                <a href="#news" class="dropdown-item featured-card">
+                                    <div class="featured-image"></div>
+                                    <div class="item-content">
+                                        <h4>News</h4>
+                                        <p>Latest product releases and announcements</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <!-- Resources Dropdown -->
+                <li class="nav-item has-dropdown">
+                    <a href="#resources" class="nav-link">
+                        Resources
+                        <svg class="dropdown-icon" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid columns-2">
+                                <a href="#trends" class="dropdown-item featured-card">
+                                    <div class="featured-badge">NEW</div>
+                                    <div class="item-content">
+                                        <h4>iGAMING TRENDS 2025</h4>
+                                        <p>Free annual report and forecast</p>
+                                    </div>
+                                </a>
+                                <a href="#reports" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>iGAMING REPORTS</h4>
+                                        <p>Download free guides and insights</p>
+                                    </div>
+                                </a>
+                                <a href="#calculator" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>Budget Calculator</h4>
+                                        <p>Plan your operational budget</p>
+                                    </div>
+                                </a>
+                                <a href="#compliance" class="dropdown-item">
+                                    <div class="item-content">
+                                        <h4>Compliance</h4>
+                                        <p>See where our software is certified</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <!-- Simple Links -->
+                <li class="nav-item">
+                    <a href="#knowledge" class="nav-link">Knowledge Base</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#events" class="nav-link">Events</a>
+                </li>
             </ul>
+            
+            <!-- Right Side Items -->
+            <div class="nav-actions">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="lang-button" id="langButton">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span class="lang-code">EN</span>
+                        <svg class="lang-arrow" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <a href="#" class="lang-option active" data-lang="en">
+                            <span class="lang-flag">🇬🇧</span>
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="ru">
+                            <span class="lang-flag">🇷🇺</span>
+                            <span>Русский</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="es">
+                            <span class="lang-flag">🇪🇸</span>
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="pt">
+                            <span class="lang-flag">🇧🇷</span>
+                            <span>Português</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="de">
+                            <span class="lang-flag">🇩🇪</span>
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="fr">
+                            <span class="lang-flag">🇫🇷</span>
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="zh">
+                            <span class="lang-flag">🇨🇳</span>
+                            <span>中文</span>
+                        </a>
+                        <a href="#" class="lang-option" data-lang="ja">
+                            <span class="lang-flag">🇯🇵</span>
+                            <span>日本語</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="theme-toggle" id="themeToggle">
+                    <div class="theme-toggle-slider"></div>
+                </div>
+                <a href="#contact" class="cta-button">Contact Us</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
             <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
                 <span></span>
                 <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <ul class="mobile-nav">
+                    <!-- Products Accordion -->
+                    <li class="mobile-nav-item has-submenu">
+                        <button class="mobile-nav-link" data-submenu="products">
+                            Products
+                            <span class="submenu-toggle">+</span>
+                        </button>
+                        <ul class="mobile-submenu" id="products-submenu">
+                            <li><a href="#game-aggregator">Game Aggregator</a></li>
+                            <li><a href="#affilka">Affilka</a></li>
+                            <li><a href="#jackpot">Jackpot Aggregator</a></li>
+                            <li><a href="#sportsbook">Sportsbook Platform</a></li>
+                            <li><a href="#casino-platform">Casino Platform</a></li>
+                            <li><a href="#managed-services">Managed Services</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Partners Accordion -->
+                    <li class="mobile-nav-item has-submenu">
+                        <button class="mobile-nav-link" data-submenu="partners">
+                            Partners
+                            <span class="submenu-toggle">+</span>
+                        </button>
+                        <ul class="mobile-submenu" id="partners-submenu">
+                            <li><a href="#game-providers">Game Providers</a></li>
+                            <li><a href="#business-partners">Business Partners</a></li>
+                            <li><a href="#payment-providers">Payment Providers</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Company Accordion -->
+                    <li class="mobile-nav-item has-submenu">
+                        <button class="mobile-nav-link" data-submenu="company">
+                            Company
+                            <span class="submenu-toggle">+</span>
+                        </button>
+                        <ul class="mobile-submenu" id="company-submenu">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#news">News</a></li>
+                            <li><a href="#tech-stack">Technology Stack</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Resources Accordion -->
+                    <li class="mobile-nav-item has-submenu">
+                        <button class="mobile-nav-link" data-submenu="resources">
+                            Resources
+                            <span class="submenu-toggle">+</span>
+                        </button>
+                        <ul class="mobile-submenu" id="resources-submenu">
+                            <li><a href="#trends">iGaming Trends 2025</a></li>
+                            <li><a href="#reports">Reports</a></li>
+                            <li><a href="#calculator">Budget Calculator</a></li>
+                            <li><a href="#compliance">Compliance</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Simple Links -->
+                    <li class="mobile-nav-item">
+                        <a href="#knowledge" class="mobile-nav-link">Knowledge Base</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#events" class="mobile-nav-link">Events</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -3904,6 +4687,76 @@
     </footer>
 
     <script>
+        // Language selector functionality
+        const langButton = document.getElementById('langButton');
+        const langSelector = document.querySelector('.language-selector');
+        const langOptions = document.querySelectorAll('.lang-option');
+        const langCode = document.querySelector('.lang-code');
+        const langFlag = document.querySelector('.lang-button .lang-flag');
+        
+        // Language data
+        const languages = {
+            'en': { flag: '🇬🇧', code: 'EN', name: 'English' },
+            'ru': { flag: '🇷🇺', code: 'RU', name: 'Русский' },
+            'es': { flag: '🇪🇸', code: 'ES', name: 'Español' },
+            'pt': { flag: '🇧🇷', code: 'PT', name: 'Português' },
+            'de': { flag: '🇩🇪', code: 'DE', name: 'Deutsch' },
+            'fr': { flag: '🇫🇷', code: 'FR', name: 'Français' },
+            'zh': { flag: '🇨🇳', code: 'ZH', name: '中文' },
+            'ja': { flag: '🇯🇵', code: 'JA', name: '日本語' }
+        };
+        
+        // Toggle language dropdown
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSelector.classList.toggle('active');
+        });
+        
+        // Select language
+        langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const selectedLang = option.getAttribute('data-lang');
+                
+                // Update button
+                langFlag.textContent = languages[selectedLang].flag;
+                langCode.textContent = languages[selectedLang].code;
+                
+                // Update active state
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Close dropdown
+                langSelector.classList.remove('active');
+                
+                // Save preference
+                localStorage.setItem('language', selectedLang);
+                
+                // Optional: Trigger language change event
+                console.log('Language changed to:', languages[selectedLang].name);
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!langSelector.contains(e.target)) {
+                langSelector.classList.remove('active');
+            }
+        });
+        
+        // Load saved language preference
+        const savedLang = localStorage.getItem('language') || 'en';
+        if (languages[savedLang]) {
+            langFlag.textContent = languages[savedLang].flag;
+            langCode.textContent = languages[savedLang].code;
+            langOptions.forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.getAttribute('data-lang') === savedLang) {
+                    opt.classList.add('active');
+                }
+            });
+        }
+        
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
@@ -3922,11 +4775,58 @@
         
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        const mobileMenu = document.getElementById('mobileMenu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Mobile submenu toggle
+        const mobileSubmenuBtns = document.querySelectorAll('.mobile-nav-link[data-submenu]');
+        
+        mobileSubmenuBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parentItem = btn.closest('.mobile-nav-item');
+                const isOpen = parentItem.classList.contains('submenu-open');
+                
+                // Close all submenus
+                document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                    item.classList.remove('submenu-open');
+                });
+                
+                // Toggle current submenu
+                if (!isOpen) {
+                    parentItem.classList.add('submenu-open');
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileMenuLinks = document.querySelectorAll('.mobile-submenu a, .mobile-nav-item > a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Desktop dropdown hover effect enhancement
+        const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
+        let dropdownTimeout;
+        
+        dropdownItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(dropdownTimeout);
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                dropdownTimeout = setTimeout(() => {
+                    // Optional: Add any cleanup here
+                }, 300);
+            });
         });
 
         // Navbar scroll effect
@@ -3968,7 +4868,9 @@
                         block: 'start'
                     });
                     // Close mobile menu if open
-                    navLinks.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
         });
